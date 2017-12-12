@@ -8,7 +8,7 @@
 Plugin Name: Visitor Status for CIlamp
 Plugin URI:  http://www.cilamp.se
 Description: Change color if anyone visits your site
-Version:     0.0.1
+Version:     0.0.3
 Author:      Ein Andersson on demand of Olof Bjarnarson
 Author URI:  http://www.cilamp.se
 License:     FreeBSD
@@ -16,6 +16,7 @@ License URI: https://www.freebsd.org/copyright/freebsd-license.html
 Domain Path:
 Text Domain: cilamp
 */
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 
 add_action('init', 'cilamp_init');
@@ -30,12 +31,13 @@ function cilamp_init() {
 
 function cilamp_ajax_action() {
     $colors = ['FF0000', '00FF00', '0000FF'];
+    $systemID = "";
     global $wpdb; // this is how you get access to the database
 
     $color =  $colors[rand(0,2)];
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL,"https://api.cilamp.se/v1/testsystem/");
+    curl_setopt($ch, CURLOPT_URL,'https://api.cilamp.se/v1/'. $systemID  .'/');
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS,'color='. $color );
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
