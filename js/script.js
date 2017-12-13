@@ -8,7 +8,7 @@
             'action': 'cilamp_ajax_action',
         };
 
-        jQuery.post(cilamp_ajax.ajax_url, data, function(response) {
+        $.post(cilamp_ajax.ajax_url, data, function(response) {
             console.log('Got this from the server: ' + response);
         });
     });
