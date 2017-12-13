@@ -46,12 +46,19 @@ function cilamp_helloWorld() {
 
 add_action( 'wp_ajax_nopriv_cilamp_ajax_action', 'cilamp_ajax_action' );
 
+function random_color_part() {
+    return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+}
+
+function random_color() {
+    return random_color_part() . random_color_part() . random_color_part();
+}
+
 function cilamp_ajax_action() {
-	$colors   = [ 'FF0000', '00FF00', '0000FF' ];
-	$systemID = "XXXX";
+	$systemID = "XXXX"; // TODO: use db value
 	global $wpdb; // this is how you get access to the database
 
-	$color = $colors[ rand( 0, 2 ) ];
+	$color = random_color();
 	$ch    = curl_init();
 
 	curl_setopt( $ch, CURLOPT_URL, 'https://api.cilamp.se/v1/' . $systemID . '/' );
