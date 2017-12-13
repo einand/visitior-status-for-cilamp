@@ -16,6 +16,7 @@
  * Domain Path:
  * Text Domain: cilamp
  */
+
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 
@@ -26,29 +27,64 @@ function cilamp_init() {
 	wp_localize_script( 'visitor-cilamp', 'cilamp_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }
 
-add_action('admin_menu', 'my_menu');
+add_action( 'admin_menu', 'my_menu' );
 function my_menu() {
 	$main_page_title = 'cilamp';
 	$main_menu_title = 'cilamp';
 	$main_capability = 'manage_options';
-	$main_menu_slug = 'cilamp_admin';
-	$main_function = 'cilamp_helloWorld';
-	$main_icon_url = plugin_dir_url( __FILE__ ) . 'img/menu_icon16.png';
-	$main_position = null;
+	$main_menu_slug  = 'cilamp_admin';
+	$main_function   = 'cilamp_helloWorld';
+	$main_icon_url   = plugin_dir_url( __FILE__ ) . 'img/menu_icon16.png';
+	$main_position   = null;
 
 	add_menu_page( $main_page_title, $main_menu_title, $main_capability, $main_menu_slug, $main_function, $main_icon_url, $main_position );
 }
 
 function cilamp_helloWorld() {
-	echo 'hello';
+	$cilamp_systemid = get_option( 'cilamp_systemid' );
+
+	if( isset($_POST[ 'cilamp_systemid' ])  ) {
+		$cilamp_systemid = $_POST['cilamp_systemid'];
+		update_option( 'cilamp_systemid', $cilamp_systemid );
+	}
+
+
+
+
+		echo '<div class="wrap">';
+
+	echo '
+
+<h1>Cilamp</h1>
+<form name="cilamp_settingss_form" method="post" action="">
+<table class="form-table">
+<tbody>
+<tr>
+<th class="row"> <label for="systemid">Systemid:</label> </th>
+<td>
+   <input type="text" name="cilamp_systemid" value="'. $cilamp_systemid .'">
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
+</form>';
+
+	echo '</div>';
+
+
 }
 
 
 add_action( 'wp_ajax_nopriv_cilamp_ajax_action', 'cilamp_ajax_action' );
+add_action( 'wp_ajax_cilamp_ajax_action', 'cilamp_ajax_action' );
 
 function cilamp_ajax_action() {
 	$colors   = [ 'FF0000', '00FF00', '0000FF' ];
-	$systemID = "XXXX";
+	$systemID = get_option( 'cilamp_systemid' );
+
 	global $wpdb; // this is how you get access to the database
 
 	$color = $colors[ rand( 0, 2 ) ];
