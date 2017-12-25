@@ -26,7 +26,3 @@ add_action( 'init', ['cilamp_wpplugin', 'init'] );
 add_action( 'admin_menu', ['cilamp_wpplugin', 'admin_menu'] );
 add_action( 'wp_ajax_nopriv_cilamp_ajax_action', ['cilamp_wpplugin', 'cilamp_ajax_action'] );
 add_action( 'wp_ajax_cilamp_ajax_action', ['cilamp_wpplugin', 'cilamp_ajax_action'] );
-
-
-
-
