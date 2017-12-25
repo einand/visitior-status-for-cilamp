@@ -1,23 +1,42 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: einandersson
- * Date: 2017-12-25
- * Time: 19:17
+ * API for CILamp how to easy set color with php
+ *
+ * First include the file
+ * include_once "cilamp.php";
+ *
+ * just call the class
+ * $lamp = new \cilamp\cilamp("systemID");
+ *
+ * and set a color
+ * $lamp->setColor("#00FF00");
  */
 
 namespace cilamp;
 
-
+/**
+ * cilamp class for api v1
+ */
 class cilamp {
 
 	private $systemID = null;
 
+	/**
+	 * @param string $_systemID set the system id of the lamp
+	 *
+	 * @return object of cilamp
+	 */
 	public function __construct($_systemID) {
 		$this->systemID = $_systemID;
 	}
 
-	public function setColor($_color, $_period = 0) {
+	/**
+	 * Changes the color of the lamp
+	 * @param string $_color hexadecimal RGB value of the color of the lamp including #
+	 *
+	 * @return answer from the server
+	 */
+	public function setColor($_color) {
 		return $this->sendColor($_color);
 	}
 
@@ -25,7 +44,11 @@ class cilamp {
 		return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
 	}
 
-
+	/**
+	 * Sets a random color of the lamp
+	 *
+	 * @return answer from the server
+	 */
 	public function randomColor() {
 		$color =  $this->random_color_part() . $this->random_color_part() . $this->random_color_part();
 		return $this->setColor($color);

@@ -9,7 +9,7 @@
  * Plugin URI:  http://www.cilamp.se
  * Description: Change color if anyone visits your site
  * Version:     0.1.1
- * Author:      Ein Andersson on demand of Olof Bjarnarson
+ * Author:      Ein Andersson  with Olof Bjarnarson
  * Author URI:  http://www.cilamp.se
  * License:     FreeBSD
  * License URI: https://www.freebsd.org/copyright/freebsd-license.html
