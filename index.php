@@ -18,8 +18,10 @@
  */
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+include_once "ein_wordpress_admin_gui.php";
 include_once "cilamp.php";
 include_once "cilamp_wpplugin.php";
+
 
 
 add_action( 'init', ['cilamp_wpplugin', 'init'] );

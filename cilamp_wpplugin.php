@@ -18,7 +18,7 @@ class cilamp_wpplugin {
 		$main_menu_title = 'cilamp';
 		$main_capability = 'manage_options';
 		$main_menu_slug  = 'cilamp_admin';
-		$main_function   = ['cilamp_wpplugin', 'adminPage'];
+		$main_function   = [ 'cilamp_wpplugin', 'adminPage' ];
 		$main_icon_url   = plugin_dir_url( __FILE__ ) . 'img/menu_icon16.png';
 		$main_position   = null;
 
@@ -37,34 +37,19 @@ class cilamp_wpplugin {
 	static function adminPage() {
 		$cilamp_systemid = get_option( 'cilamp_systemid' );
 
-		if( isset($_POST[ 'cilamp_systemid' ])  ) {
+		if ( isset( $_POST['cilamp_systemid'] ) ) {
 			$cilamp_systemid = $_POST['cilamp_systemid'];
 			update_option( 'cilamp_systemid', $cilamp_systemid );
 		}
 
-		echo '<div class="wrap">';
-
-		echo '
-
-<h1>Visitor Status CILAMP</h1>
-<form name="cilamp_settingss_form" method="post" action="">
-<table class="form-table">
-<tbody>
-<tr>
-<th class="row"> <label for="systemid">Systemid:</label> </th>
-<td>
-   <input type="text" name="cilamp_systemid" value="'. $cilamp_systemid .'">
-</td>
-</tr>
-
-</tbody>
-</table>
-
-<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
-</form>';
-
-		echo '</div>';
-
+		ein_admin_gui::page_start( 'Visitor Status CILAMP' );
+		ein_admin_gui::start_form( "cilamp_settingss_form" );
+		ein_admin_gui::table_start();
+		ein_admin_gui::table_textbox( 'Systemid:', 'cilamp_systemid', $cilamp_systemid );
+		ein_admin_gui::table_end();
+		ein_admin_gui::form_saveButton();
+		ein_admin_gui::end_form();
+		ein_admin_gui::page_end();
 
 	}
 
