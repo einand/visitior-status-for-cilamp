@@ -21,7 +21,7 @@ class ein_admin_gui {
 
 	static function start_form( $_formName ) {
 		echo '<form name="' . $_formName . '" method="post" action="">';
-
+		wp_nonce_field( $_formName, $_formName );
 	}
 
 	static function end_form() {

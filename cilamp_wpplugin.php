@@ -37,10 +37,19 @@ class cilamp_wpplugin {
 	static function adminPage() {
 		$cilamp_systemid = get_option( 'cilamp_systemid' );
 
+
 		if ( isset( $_POST['cilamp_systemid'] ) ) {
-			$cilamp_systemid = $_POST['cilamp_systemid'];
-			update_option( 'cilamp_systemid', $cilamp_systemid );
+			if ( ! isset( $_POST['cilamp_settingss_form'] ) || ! wp_verify_nonce( $_POST['cilamp_settingss_form'], 'cilamp_settingss_form' ) ) {
+				print 'Sorry, your nonce did not verify.';
+				exit;
+			} else {
+
+				$cilamp_systemid = $_POST['cilamp_systemid'];
+				update_option( 'cilamp_systemid', $cilamp_systemid );
+			}
+
 		}
+
 
 		ein_admin_gui::page_start( 'Visitor Status CILAMP' );
 		ein_admin_gui::start_form( "cilamp_settingss_form" );
