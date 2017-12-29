@@ -48,6 +48,18 @@ class ein_admin_gui {
 		echo '</tr>';
 	}
 
+	static function table_checktbox( $_label, $_name, $_value ) {
+
+		echo '<tr>';
+		echo '<th class="row"> <label for="' . $_name . '">' . $_label . '</label> </th>';
+		echo '<td>';
+
+		echo '<input type="checkbox" name="' . $_name . '"'. $_value .' >';
+		echo '</td>';
+		echo '</tr>';
+	}
+
+
 	static function form_saveButton() {
 		echo '<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>';
 	}
