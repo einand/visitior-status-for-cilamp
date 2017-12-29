@@ -12,8 +12,6 @@ class cilamp_wpplugin {
 
 		$loadAjax = cilamp_wpplugin::pageAllowsCilampAjax();
 
-		var_dump($loadAjax);
-
 		if ( $loadAjax ) {
 			wp_enqueue_script( 'visitor-cilamp', plugin_dir_url( __FILE__ ) . 'js/script.js', array( 'jquery' ), false, true );
 			wp_localize_script( 'visitor-cilamp', 'cilamp_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
@@ -36,12 +34,12 @@ class cilamp_wpplugin {
 	static function pageAllowsCilampAjax() {
 		$admin = true;
 
-		if (get_option( 'cilamp_disable_for_admin' ) == 'checked') {
+		if ( get_option( 'cilamp_disable_for_admin' ) == 'checked' ) {
 			$admin = false;
 		}
 
 
-		if (current_user_can('administrator') && !$admin) {
+		if ( current_user_can( 'administrator' ) && ! $admin ) {
 			return false;
 		}
 
@@ -78,7 +76,7 @@ class cilamp_wpplugin {
 		if ( isset( $_POST['cilamp_disable_for_admin'] ) && $nonce ) {
 			$cilamp_disable_for_admin = 'checked';
 			update_option( 'cilamp_disable_for_admin', $cilamp_disable_for_admin );
-		} elseif ($nonce) {
+		} elseif ( $nonce ) {
 			$cilamp_disable_for_admin = '';
 			update_option( 'cilamp_disable_for_admin', $cilamp_disable_for_admin );
 		}
