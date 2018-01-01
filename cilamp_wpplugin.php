@@ -60,8 +60,12 @@ class cilamp_wpplugin {
 		$cilamp_systemid          = get_option( 'cilamp_systemid' );
 		$cilamp_trigger_urls      = get_option( 'cilamp_trigger_urls' );
 		$cilamp_disable_for_admin = get_option( 'cilamp_disable_for_admin' );
-		$nonce                    = wp_verify_nonce( $_POST['cilamp_settings_form'], 'cilamp_settings_form' );
+		$nonce = false;
 
+
+		if ( isset( $_POST['cilamp_systemid'] )  ) {
+			$nonce = wp_verify_nonce( $_POST['cilamp_settings_form'], 'cilamp_settings_form' );
+		}
 
 		if ( isset( $_POST['cilamp_systemid'] ) && $nonce ) {
 			$cilamp_systemid = $_POST['cilamp_systemid'];

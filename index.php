@@ -8,7 +8,7 @@
  * Plugin Name: Visitor Status for CIlamp
  * Plugin URI:  http://www.cilamp.se
  * Description: Change color if anyone visits your site
- * Version:     0.3.1
+ * Version:     0.3.2
  * Author:      Ein Andersson  with Olof Bjarnarson
  * Author URI:  http://www.cilamp.se
  * License:     FreeBSD
