@@ -83,6 +83,10 @@ class cilamp_wpplugin {
 
 
 		ein_admin_gui::page_start( 'Visitor Status CILAMP' );
+		if ($nonce) {
+			ein_admin_gui::noticeBox('Settings saved.');
+		}
+
 		ein_admin_gui::start_form( "cilamp_settings_form" );
 		ein_admin_gui::table_start();
 		ein_admin_gui::table_textbox( 'Systemid:', 'cilamp_systemid', $cilamp_systemid );

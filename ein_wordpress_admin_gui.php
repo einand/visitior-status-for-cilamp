@@ -64,4 +64,15 @@ class ein_admin_gui {
 		echo '<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>';
 	}
 
+	static function noticeBox($_text) {
+
+		echo '<div class="notice notice-success is-dismissible">';
+		echo '<p><strong>'. $_text .'</strong></p>';
+		echo '<button type="button" class="notice-dismiss">';
+		echo '<span class="screen-reader-text">Dismiss this notice.</span>';
+		echo '</button>';
+		echo '</div>';
+
+	}
+
 }
